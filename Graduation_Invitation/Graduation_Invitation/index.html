@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#b6c893">
+  <meta name="description" content="Thư mời tham dự lễ tốt nghiệp của Chi Mai, ngày 08/11/2026 tại Đại học FPT.">
+  <title>Thư mời tốt nghiệp · Chi Mai 🎓</title>
+  <link rel="preload" href="assets/background.png" as="image">
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/app.js" defer></script>
+</head>
+<body>
+  <main class="viewport" id="viewport" aria-label="Thiệp mời lễ tốt nghiệp của Chi Mai">
+    <!-- 945 × 2048 là đúng kích thước background PNG gốc của m. -->
+    <div class="artboard" id="artboard">
+      <img class="background" src="assets/background.png" alt="Nền lịch xanh với ô ngày chủ nhật 08 và phần thiệp xanh đậm" draggable="false">
+
+      <!-- Ảnh chữ đã thiết kế, tự pop-out theo thứ tự. -->
+      <div class="art-element title-element" id="title-element" aria-label="Thư mời tham dự lễ tốt nghiệp của Chi Mai">
+        <img class="pop-content" src="assets/title.png" alt="Thư mời tham dự Lễ Tốt Nghiệp của Chi Mai" draggable="false">
+      </div>
+      <div class="art-element details-element" id="details-element" aria-label="Ngày 08 tháng 11 năm 2026, 12 giờ trưa, tại trường Đại học FPT">
+        <img class="pop-content" src="assets/details.png" alt="08/11/2026, 12:00PM, Trường Đại học FPT" draggable="false">
+      </div>
+
+      <!-- 5 sticker tương tác. Vị trí chính xác chỉnh trong js/app.js -->
+      <div class="sticker art-element" data-sticker="1" role="img" aria-label="Sticker ngôi sao đỏ, có thể kéo">
+        <img class="pop-content" src="assets/sticker-1.png" alt="" draggable="false">
+      </div>
+      <div class="sticker art-element" data-sticker="2" role="img" aria-label="Sticker mèo kem, có thể kéo">
+        <img class="pop-content" src="assets/sticker-2.png" alt="" draggable="false">
+      </div>
+      <div class="sticker art-element" data-sticker="3" role="img" aria-label="Sticker thỏ kem, có thể kéo">
+        <img class="pop-content" src="assets/sticker-3.png" alt="" draggable="false">
+      </div>
+      <div class="sticker art-element" data-sticker="4" role="img" aria-label="Sticker chibi tóc xanh, có thể kéo">
+        <img class="pop-content" src="assets/sticker-4.png" alt="" draggable="false">
+      </div>
+      <div class="sticker art-element" data-sticker="5" role="img" aria-label="Sticker chữ @torutr, có thể kéo">
+        <img class="pop-content" src="assets/sticker-5.png" alt="" draggable="false">
+      </div>
+
+      <a class="rsvp-button" id="rsvp-button" href="#" target="_blank" rel="noopener noreferrer" aria-label="Xác nhận tham dự lễ tốt nghiệp qua Google Form">
+        <span>XÁC NHẬN THAM DỰ</span><span aria-hidden="true"> ↗</span>
+      </a>
+    </div>
+  </main>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+</body>
+</html>

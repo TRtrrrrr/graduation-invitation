@@ -1,0 +1,172 @@
+/* ================================
+   CHI MAI · GRADUATION INVITATION
+   BASE CANVAS: 945 × 2048
+   Hình vẽ thuộc về tác giả.
+   Layout/scaling do JavaScript tính để không vỡ trên iPhone.
+   ================================ */
+:root {
+  --bg: #b4c78d;
+  --red: #951a1a;
+  --cream: #fff5dc;
+}
+* { box-sizing: border-box; }
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: var(--bg);
+  overscroll-behavior: none;
+  -webkit-text-size-adjust: 100%;
+}
+body {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-touch-callout: none;
+  -webkit-tap-highlight-color: transparent;
+}
+.viewport {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  height: 100dvh;
+  overflow: hidden;
+  touch-action: none;
+  background: var(--bg);
+}
+.artboard {
+  position: absolute;
+  width: 945px;
+  height: 2048px;
+  overflow: hidden;
+  transform-origin: top left;
+  isolation: isolate;
+  background: var(--bg);
+}
+.background {
+  position: absolute;
+  inset: 0;
+  width: 945px;
+  height: 2048px;
+  display: block;
+  z-index: 1;
+  pointer-events: none;
+  -webkit-user-drag: none;
+}
+.art-element {
+  position: absolute;
+  transform-origin: center center;
+  will-change: left, top;
+  z-index: 3;
+}
+.art-element img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+  -webkit-user-drag: none;
+  pointer-events: none;
+}
+.title-element,
+.details-element { pointer-events: none; }
+.pop-content {
+  opacity: 0;
+  transform: translateY(22px) scale(.48) rotate(-8deg);
+  transform-origin: center center;
+}
+.art-element.is-visible .pop-content {
+  animation: pop-sticker 620ms cubic-bezier(.19, 1.46, .38, 1) both;
+}
+@keyframes pop-sticker {
+  0% { opacity: 0; transform: translateY(22px) scale(.48) rotate(-8deg); }
+  54% { opacity: 1; transform: translateY(-5px) scale(1.10) rotate(3deg); }
+  78% { opacity: 1; transform: translateY(2px) scale(.96) rotate(-1deg); }
+  100% { opacity: 1; transform: translateY(0px) scale(1) rotate(0deg); }
+}
+/* Sticker đã xuất hiện hoàn toàn thì không pop lại sau thao tác kéo. */
+.art-element.has-arrived .pop-content {
+  animation: none;
+  opacity: 1;
+  transform: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  .art-element.is-visible .pop-content { animation: fade-in 150ms ease-out both; }
+  @keyframes fade-in { from {opacity:0} to {opacity:1} }
+}
+.sticker {
+  cursor: grab;
+  touch-action: none;
+  pointer-events: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
+.sticker.is-visible { pointer-events: auto; }
+.sticker.is-dragging {
+  cursor: grabbing;
+  transition: none;
+}
+.sticker.is-dragging .pop-content,
+.sticker.has-arrived.is-dragging .pop-content {
+  animation: none !important;
+  opacity: 1;
+  transform: scale(1.045);
+  filter: drop-shadow(0 13px 13px rgba(11, 30, 5, .2));
+}
+.rsvp-button {
+  position: absolute;
+  left: 245px;
+  top: 1355px;
+  width: 303px;
+  height: 66px;
+  background: var(--red);
+  border: 3px solid var(--cream);
+  border-radius: 15px;
+  box-shadow: 6px 7px 0 rgba(10, 32, 10, .35);
+  text-decoration: none;
+  color: var(--cream);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  font-size: 24px;
+  font-weight: 800;
+  letter-spacing: .3px;
+  white-space: nowrap;
+  z-index: 5;
+  opacity: 0;
+  pointer-events: none;
+  transform-origin: center;
+  touch-action: manipulation;
+}
+.rsvp-button.is-visible {
+  pointer-events: auto;
+  animation: pop-button 600ms cubic-bezier(.22, 1.37, .32, 1) both;
+}
+.rsvp-button:active { filter: brightness(1.1); }
+.rsvp-button:focus-visible { outline: 5px solid var(--cream); outline-offset: 8px; }
+@keyframes pop-button {
+  0% { opacity: 0; transform: scale(.4) rotate(-6deg); }
+  70% { opacity: 1; transform: scale(1.09) rotate(2deg); }
+  100% { opacity: 1; transform: scale(1) rotate(0deg); }
+}
+.toast {
+  position: fixed;
+  z-index: 999;
+  left: 50%;
+  bottom: calc(16px + env(safe-area-inset-bottom, 0px));
+  transform: translateX(-50%) translateY(15px);
+  max-width: min(92vw, 460px);
+  padding: 11px 16px;
+  background: rgba(23, 52, 19, .96);
+  border-radius: 14px;
+  color: white;
+  text-align: center;
+  font-size: 14px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .2s ease, transform .2s ease;
+}
+.toast.is-visible { opacity: 1; transform: translateX(-50%) translateY(0); }
